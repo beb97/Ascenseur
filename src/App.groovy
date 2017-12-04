@@ -3,16 +3,24 @@
  */
 class App {
     static void main(String[] args) {
+        def busCommande = new BusCommande()
+        def ascenseur = new Ascenseur(busCommande)
+
         LinkedList<Etage> etages = new LinkedList<Etage>()
-        5.times { etages.add(new Etage(it)) }
-        def batiment = new Batiment(etages)
+        5.times { etages.add(new Etage(it, busCommande)) }
+
+        def batiment = new Batiment(etages, ascenseur)
         def sortie = new SortieBatiment(batiment)
-        def ordre = batiment.etages.get(2).appel()
 
         sortie.contenu()
-//        batiment.ascenseur.carnetCommande.ecouter(ordre)
-//        batiment.ascenseur.carnetCommande.restituer()
-        batiment.ascenseur.executer(ordre)
+
+        batiment.etages[2].appel()
+        batiment.ascenseur.executer()
         sortie.contenu()
+
+        batiment.etages[4].appel()
+        batiment.ascenseur.executer()
+        sortie.contenu()
+
     }
 }

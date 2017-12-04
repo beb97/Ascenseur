@@ -2,23 +2,23 @@
  * Created by bebon on 04/12/2017.
  */
 class CarnetCommande {
-    LinkedList<Ordre> ordres
+    LinkedHashSet<Commande> commandes
 
-    void ecouter(Ordre ordre) {
-        ordres.add(ordre)
+    void ajouter(Commande ordre) {
+        commandes.add(ordre)
     }
 
-    Ordre restituer() {
-        def ordre = ordres.getFirst()
-        ordres.removeFirst()
-        ordre
+    Commande restituer() {
+        Commande commande = commandes.getAt(0)
+        commandes.remove(commande)
+        commande
     }
 
     CarnetCommande() {
-        this(new LinkedList<Ordre>())
+        this(new LinkedList<Commande>())
     }
 
-    CarnetCommande(LinkedList<Ordre> ordres1) {
-        ordres = ordres1
+    CarnetCommande(LinkedList<Commande> ordres1) {
+        commandes = ordres1
     }
 }

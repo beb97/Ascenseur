@@ -3,11 +3,12 @@
  */
 class Ascenseur {
     Cabine cabine
-    CarnetCommande carnetCommande
+    BusCommande bus
 
-    void executer(Ordre ordre) {
-        while (!ordre.cible.numero.equals(cabine.position)) {
-            if (ordre.cible.numero > cabine.position) {
+    void executer() {
+        Commande commande = bus.carnetCommande.restituer()
+        while (!commande.cible.numero.equals(cabine.position)) {
+            if (commande.cible.numero > cabine.position) {
                 cabine.monter()
             } else {
                 cabine.descendre()
@@ -15,17 +16,13 @@ class Ascenseur {
         }
     }
 
-    Ascenseur(Cabine cabine1) {
-        this(cabine1, new CarnetCommande())
+    Ascenseur(BusCommande bus1) {
+        this(new Cabine(bus1), bus1)
     }
 
-    Ascenseur() {
-        this(new Cabine())
-    }
-
-    Ascenseur(Cabine cabine1, CarnetCommande carnetCommande1) {
+    Ascenseur(Cabine cabine1, BusCommande bus1) {
         cabine = cabine1
-        carnetCommande = carnetCommande1
+        bus = bus1
     }
 
 }

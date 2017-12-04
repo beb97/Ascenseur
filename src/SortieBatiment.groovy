@@ -9,6 +9,6 @@ class SortieBatiment {
     }
 
     void contenu() {
-        System.out.print(batiment.etat())
+        System.out.print(batiment.etat() + System.getProperty("line.separator"))
     }
 }

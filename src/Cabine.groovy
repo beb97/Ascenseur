@@ -3,6 +3,7 @@
  */
 class Cabine {
     Integer position
+    BusCommande bus
 
     void monter() {
         this.position++
@@ -12,11 +13,12 @@ class Cabine {
         this.position--
     }
 
-    Cabine(Integer position1) {
-        position = position1
+    Cabine(BusCommande bus1) {
+        this(new Integer(0), bus1)
     }
 
-    Cabine() {
-        this(new Integer(0))
+    Cabine(Integer position1, BusCommande bus1) {
+        position = position1
+        bus = bus1
     }
 }

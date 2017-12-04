@@ -3,12 +3,14 @@
  */
 class Etage {
     Integer numero
+    BusCommande bus
 
-    Ordre appel() {
-        return new Ordre(this, this)
+    void appel() {
+        bus.ecouter(new Commande(this, this))
     }
 
-    Etage(Integer numero1) {
+    Etage(Integer numero1, BusCommande bus1) {
         numero = numero1
+        bus = bus1
     }
 }
